@@ -10,8 +10,9 @@ class Room:
         maximum_guests = 4
         if len(self.guests_list) < maximum_guests:
             self.guests_list.append(input_guest)
-            input_guest.reduce_wallet(self.fee)
+            input_guest.pay_room_fee(self)
             self.till += self.fee
+            return input_guest.cheer_fav_song(self)
     
     def check_out_guest(self, input_guest):
         self.guests_list.remove(input_guest)

@@ -4,13 +4,19 @@ class Guest:
         self.wallet = input_wallet
         self.fav_song = input_fav_song
     
-    def reduce_wallet(self, input_amount):
-        self.wallet -= input_amount
+    def can_pay(self, input_amount):
+        if self.wallet >= input_amount:
+            return True
+    
+    def make_payment(self, input_amount):
+        result = self.can_pay(input_amount)
+        if result == True:
+            self.wallet -= input_amount
     
     def cheer_fav_song(self, input_room):
         for song in input_room.songs_list:
             if song == self.fav_song:
                 return "Whoo!"
-    
-    # def pay_for_check_in(self, input_room):
-    #     self.reduce_wallet(input_room.fee)
+
+    def pay_room_fee(self, input_room):
+            self.make_payment(input_room.fee)
